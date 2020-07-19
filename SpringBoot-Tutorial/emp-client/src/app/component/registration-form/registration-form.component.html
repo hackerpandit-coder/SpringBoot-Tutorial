@@ -1,59 +1,148 @@
 <div class="container">
-  <div class="panel-body"><br><br><br>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-centre">Registration Form</h3>
+        </div>
+        <div class="card-body">
+          <form class="form" #registerForm="ngForm" [appMatchPassword]="['password', 'confirmPassword']"
+            (ngSubmit)="registerForm.form.valid && onSubmit()" novalidate>
 
-    <div class="form-group row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <strong>User Name</strong>
-          <input type="text" placeholder="User Name" class="form-control">
+            <div class="row form-inline">
+              <div class="col-md-12 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Userid :</label>
+                  <input type="text" class="form-control" [(ngModel)]="registrationForm.userId" name="userId"
+                    #userId="ngModel" required>
+
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row form-inline">
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Name :</label>
+                  <input type="text" class="form-control" [(ngModel)]="registrationForm.name" name="name"
+                    #name="ngModel" required>
+                  <span class="text-danger" *ngIf="registerForm.submitted && name.errors?.required">
+                    Name is required
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Username :</label>
+                  <input type="text" class="form-control" [(ngModel)]="registrationForm.username" name="username"
+                    #username="ngModel" appValidateUserName required>
+                  <span class="text-danger" *ngIf="registerForm.submitted && username.errors?.required">
+                    User Name is required
+                  </span>
+                  <span class="text-danger" *ngIf="username.errors?.userNameNotAvailable">
+                    User Name not available
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row form-inline">
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Technology :</label>
+                  <select class="form-control" name="technology" [(ngModel)]="registrationForm.techName">
+                    <option value=" ">---select---</option>
+                    <option *ngFor="let technology of technologies">{{technology}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">City :</label>
+                  <select class="form-control" name="city" [(ngModel)]="registrationForm.city">
+                    <option value=" ">---select---</option>
+                    <option *ngFor="let city of cities">{{city}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row form-inline">
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Email :</label>
+                  <input type="text" class="form-control" [(ngModel)]="registrationForm.email" name="email"
+                    #email="ngModel" required email>
+                  <span class="text-danger" *ngIf="registerForm.submitted && email.errors?.required">
+                    Email is required
+                  </span>
+                  <span class="text-danger" *ngIf="email.errors?.email">
+                    Enter a valid email address
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Mobile No. :</label>
+                  <input type="text" class="form-control" [(ngModel)]="registrationForm.mobileNo" name="mobileNo">
+                  <span class="text-danger" *ngIf="password.errors?.invalidPassword">
+                    Mobile number must have 10 digit number
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row form-inline">
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Password :</label>
+                  <input type="password" class="form-control" [(ngModel)]="registrationForm.password" name="password"
+                    #password="ngModel" appPasswordPattern required>
+                  <span class="text-danger" *ngIf="registerForm.submitted && password.errors?.required">
+                    Password is required
+                  </span>
+                  <span class="text-danger" *ngIf="password.touched && password.errors?.invalidPassword">
+                    Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                    letter and 1 number
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-10 col-10 form-group">
+                <div class="form-group">
+                  <label class="control-label form-control-sm col-md-5">Confirm Password :</label>
+                  <input type="password" class="form-control" [(ngModel)]="registrationForm.confirmPassword"
+                    name="confirmPassword" #confirmPassword="ngModel" required>
+                  <span class="text-danger" *ngIf="registerForm.submitted && confirmPassword.errors?.required">
+                    Confirm Password is required
+                  </span>
+                  <span class="text-danger" *ngIf="confirmPassword.touched && confirmPassword.errors?.passwordMismatch">
+                    Passwords doesnot match
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row form-inline">
+              <div class="form-group">
+                <input type="radio" class="form-check-input" name="student" value="student"
+                  [(ngModel)]="registrationForm.student">
+                <label class="form-check-label form-control-sm col-md-5" btnRadio="student">Student</label>
+                <input type="radio" class="form-check-input" name="developer" value="developer"
+                  [(ngModel)]="registrationForm.developer">
+                <label class="form-check-label form-control-sm col-md-5" btnRadio="developer">Developer</label>
+              </div>
+            </div>
+            <br>
+            <div class="form-group-row">
+              <div class="text-centre">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary ml-3">Register</button>
+                  <button type="reset" style="color: #fff" class="btn btn-secondary ml-3"
+                    (click)="resetForm()">Reset</button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <strong>Password</strong>
-          <input type="text" placeholder="Password" class="form-control">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <strong>Contact No.</strong>
-          <input type="text" placeholder="Contact No." class="form-control">
-        </div>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <strong>Name</strong>
-          <input type="text" placeholder="Name" class="form-control">
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <strong>Age</strong>
-          <input type="text" placeholder="Age" class="form-control">
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <strong>City</strong>
-          <input type="text" placeholder="City" class="form-control">
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col text-center">
-        <div class="form-group">
-          <button type="button" class="btn btn-outline-primary">Submit</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

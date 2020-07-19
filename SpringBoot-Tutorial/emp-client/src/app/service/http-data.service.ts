@@ -13,6 +13,6 @@ export class HttpDataService {
   {
     console.log('HttpDataService--url--',url);
     console.log('HttpDataService--data--',data);
-    return this.http.post("http://localhost:8080/angular/"+url,data);    
+    return this.http.post("http://localhost:2020/master/"+url,data);    
   }
 }

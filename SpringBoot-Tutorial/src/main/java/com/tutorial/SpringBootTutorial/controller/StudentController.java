@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tutorial.SpringBootTutorial.common.ResponseObject;
 import com.tutorial.SpringBootTutorial.dto.CityDto;
+import com.tutorial.SpringBootTutorial.dto.StudentDto;
 import com.tutorial.SpringBootTutorial.model.StudentModel;
 import com.tutorial.SpringBootTutorial.service.CityService;
+import com.tutorial.SpringBootTutorial.service.StudentService;
 
 @RestController
+@CrossOrigin(value = "http://localhost:4200", allowedHeaders = "*")
 public class StudentController {
 
 	@Autowired
@@ -25,6 +29,9 @@ public class StudentController {
 
 	@Autowired
 	private CityService cityService;
+	
+	@Autowired
+	private StudentService studentService;
 
 	@GetMapping("getName")
 	public String getName() {
@@ -84,6 +91,24 @@ public class StudentController {
 		return cityService.getCityById(cityId);
 	}
 
+	@PostMapping("fetchData")
+	public ResponseObject fetchData() {
+		
+		return cityService.fetchData();
+		
+	}
+	
+	// Save Register User Data
+	@PostMapping("registerUser")
+	public ResponseObject registerUser(@RequestBody StudentDto studentDto) {
+		
+		System.out.println("----registrionModel----"+studentDto);
+
+		studentService.saveUserData(studentDto);
+		response.addData("response", "SUCCESS");
+		return response;
+		
+	}
 	// save city details
 	@PostMapping("saveCity")
 	private long saveCity(@RequestBody CityDto cityDto) {

@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RouterGuardService} from './service/router-guard.service';
 import { RegistrationFormComponent } from './component/registration-form/registration-form.component';
 import { LoginComponent } from './component/login/login.component';
+import { MenuBarComponent } from './component/menu-bar/menu-bar.component';
 
 
 
 const routes: Routes = [
-  {path: '', component: LoginComponent },
+  {path: '', component: MenuBarComponent},
   {path: 'login', component: LoginComponent },
-  { path:'register' , component: RegistrationFormComponent , canActivate:[RouterGuardService] },
-  {path: '**', component: LoginComponent }
+  { path:'register' , component: RegistrationFormComponent},
+  {path:'menu', component: MenuBarComponent}
 ];
 
 @NgModule({

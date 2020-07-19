@@ -1,0 +1,82 @@
+
+<!-- start of navbar -->
+<nav class="navbar navbar-expand-lg text-light navbar-light bg-primary">
+    <div class="container">
+
+        <a class="navbar-brand" href="#">Learn To Code</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+      <ul class="navbar-nav ml-auto menus">
+        <li class="nav-item active">
+          <a class="nav-link" href="#home_section">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#service_section">Services</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#about_section">About</a>
+          </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#contact_section" tabindex="-1" >Contact us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#myModal" >Sign In</a>
+        </li>
+        
+      </ul>
+      
+    </div>
+    </div>
+  </nav>
+  <div class="container">
+    
+    <form>
+      <div class="field">
+        <label class="label" for="name">Name</label>
+        <div class="control">
+          <input class="input"
+                type="text"
+                
+                name="name"
+                #name="ngModel"
+                required>
+        </div>
+      </div>
+    
+      <div class="field">
+        <label class="label" for="email">Email</label>
+        <div class="control">
+          <input class="input"
+                type="text"
+                
+                name="email"
+                #email="ngModel"
+                required>
+        </div>
+      </div>
+    
+      <div class="field">
+        <label class="label" for="password">Password</label>
+        <div class="control">
+          <input class="input"
+                type="password"
+                
+                name="password"
+                #password="ngModel"
+                required>
+        </div>
+      </div>  
+    
+      <button type="submit" class="button is-primary">Submit</button>
+    </form>
+</div>
+
+
+
+   <!-- End of navbar -->
+

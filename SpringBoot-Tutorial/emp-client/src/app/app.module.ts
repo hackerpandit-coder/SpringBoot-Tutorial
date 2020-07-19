@@ -8,9 +8,13 @@ import { RegistrationFormComponent } from './component/registration-form/registr
 import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import {HttpDataService} from './service/http-data.service';
+import {CustomvalidationService} from './service/customvalidation.service';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MenuBarComponent } from './component/menu-bar/menu-bar.component';
+import { ValidateUserNameDirective } from './directives/validate-user-name.directive';
+import { MatchPasswordDirective } from './directives/match-password.directive';
+import { PasswordPatternDirective } from './directives/password-pattern.directive';
 
 
 @NgModule({
@@ -19,6 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegistrationFormComponent,
     LoginComponent,
     LogoutComponent,
+    MenuBarComponent,
+    ValidateUserNameDirective,
+    MatchPasswordDirective,
+    PasswordPatternDirective,
+  
     
   ],
   imports: [
@@ -28,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [HttpDataService],
+  providers: [HttpDataService,CustomvalidationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
